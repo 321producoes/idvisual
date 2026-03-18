@@ -6,536 +6,74 @@
 <title>Briefing de Identidade Visual — 321 Produções</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
-
-  :root {
-    --lime: #CAEC30;
-    --dark: #1A1A1A;
-    --dark2: #222222;
-    --dark3: #2B2B2B;
-    --border: rgba(255,255,255,0.08);
-    --text: #F0EDE6;
-    --muted: rgba(240,237,230,0.45);
-    --accent: #CAEC30;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    background: var(--dark);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  .page-header {
-    background: var(--dark2);
-    border-bottom: 1px solid var(--border);
-    padding: 2.5rem 2rem 2rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  .logo-mark {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 2.7rem;
-    color: var(--lime);
-    letter-spacing: -0.04em;
-    line-height: 1;
-  }
-
-  .logo-sub {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.62rem;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    color: var(--muted);
-    text-transform: uppercase;
-    margin-top: 3px;
-  }
-
-  .header-title {
-    text-align: right;
-  }
-
-  .header-title h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.3rem;
-    color: var(--text);
-    letter-spacing: -0.02em;
-  }
-
-  .header-title p {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 3px;
-  }
-
-  .progress-bar-wrap {
-    background: var(--dark2);
-    padding: 0 2rem;
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .progress-bar {
-    height: 2px;
-    background: var(--border);
-    width: 100%;
-  }
-
-  .progress-fill {
-    height: 2px;
-    background: var(--lime);
-    width: 0%;
-    transition: width 0.4s ease;
-  }
-
-  .step-labels {
-    display: flex;
-    gap: 0;
-    font-size: 0.72rem;
-    color: var(--muted);
-    padding: 0.65rem 0;
-    overflow-x: auto;
-  }
-
-  .step-label {
-    flex: 1;
-    text-align: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    white-space: nowrap;
-    padding: 0 4px;
-    transition: color 0.3s;
-    cursor: pointer;
-    font-size: 0.7rem;
-  }
-
-  .step-label.active { color: var(--lime); }
-  .step-label.done { color: rgba(202,236,48,0.5); }
-
-  .container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 2.5rem 2rem 5rem;
-  }
-
-  .section {
-    display: none;
-  }
-
-  .section.active {
-    display: block;
-    animation: fadeIn 0.3s ease;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .section-header {
-    margin-bottom: 2rem;
-    padding-bottom: 1.2rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    color: var(--lime);
-    text-transform: uppercase;
-    margin-bottom: 0.4rem;
-  }
-
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    line-height: 1.15;
-  }
-
-  .section-desc {
-    margin-top: 0.6rem;
-    font-size: 0.88rem;
-    color: var(--muted);
-  }
-
-  .question-block {
-    margin-bottom: 1.8rem;
-  }
-
-  label.q-label {
-    display: block;
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 0.92rem;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-    letter-spacing: -0.01em;
-  }
-
-  .q-hint {
-    font-size: 0.78rem;
-    color: var(--muted);
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
-  }
-
-  input[type="text"],
-  input[type="url"],
-  textarea,
-  select {
-    width: 100%;
-    background: var(--dark3);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.7rem 0.9rem;
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: vertical;
-    -webkit-appearance: none;
-  }
-
-  input[type="text"]:focus,
-  input[type="url"]:focus,
-  textarea:focus,
-  select:focus {
-    border-color: var(--lime);
-  }
-
-  textarea { min-height: 90px; }
-
-  select option {
-    background: var(--dark2);
-  }
-
-  .radio-group, .check-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .radio-group label, .check-group label {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--dark3);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.45rem 0.85rem;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .radio-group input, .check-group input {
-    accent-color: var(--lime);
-    width: 14px;
-    height: 14px;
-  }
-
-  .radio-group label:has(input:checked),
-  .check-group label:has(input:checked) {
-    border-color: var(--lime);
-    color: var(--lime);
-    background: rgba(202,236,48,0.06);
-  }
-
-  .slider-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .slider-poles {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  input[type="range"] {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 2px;
-    background: var(--border);
-    border-radius: 2px;
-    outline: none;
-  }
-
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: var(--lime);
-    cursor: pointer;
-  }
-
-  .scale-row {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .scale-row:last-child { border-bottom: none; }
-
-  .scale-row .pole {
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-
-  .scale-row .pole.right { text-align: right; }
-
-  .scale-dots {
-    display: flex;
-    gap: 6px;
-    justify-content: center;
-  }
-
-  .scale-dots span {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    cursor: pointer;
-    color: var(--muted);
-    transition: all 0.2s;
-    font-family: 'Syne', sans-serif;
-  }
-
-  .scale-dots span:hover {
-    border-color: rgba(202,236,48,0.4);
-    color: var(--lime);
-  }
-
-  .scale-dots span.selected {
-    background: var(--lime);
-    border-color: var(--lime);
-    color: var(--dark);
-    font-weight: 700;
-  }
-
-  .color-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 0.6rem;
-  }
-
-  .color-swatch {
-    position: relative;
-    cursor: pointer;
-  }
-
-  .color-swatch input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-
-  .color-swatch .sw-inner {
-    border-radius: 8px;
-    height: 56px;
-    border: 2px solid transparent;
-    transition: all 0.2s;
-    display: flex;
-    align-items: flex-end;
-    padding: 4px 6px;
-  }
-
-  .color-swatch input:checked + .sw-inner {
-    border-color: var(--lime);
-    box-shadow: 0 0 0 2px rgba(202,236,48,0.3);
-  }
-
-  .sw-name {
-    font-size: 0.65rem;
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 2px 5px;
-    border-radius: 4px;
-    background: rgba(0,0,0,0.3);
-  }
-
-  .cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
-  @media(max-width: 540px) { .cols-2 { grid-template-columns: 1fr; } }
-
-  .nav-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .btn {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    padding: 0.6rem 1.5rem;
-    border-radius: 7px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    text-transform: uppercase;
-  }
-
-  .btn-outline {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
-
-  .btn-outline:hover { border-color: rgba(255,255,255,0.25); color: var(--text); }
-
-  .btn-primary {
-    background: var(--lime);
-    color: var(--dark);
-  }
-
-  .btn-primary:hover { background: #d4f03a; }
-
-  .step-counter {
-    font-size: 0.78rem;
-    color: var(--muted);
-    font-family: 'Syne', sans-serif;
-  }
-
-  .step-counter span { color: var(--lime); font-weight: 700; }
-
-  .final-section {
-    text-align: center;
-    padding: 3rem 0;
-  }
-
-  .check-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: rgba(202,236,48,0.1);
-    border: 2px solid var(--lime);
-    margin: 0 auto 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-  }
-
-  .final-section h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 0.7rem;
-    letter-spacing: -0.04em;
-  }
-
-  .final-section p {
-    color: var(--muted);
-    max-width: 440px;
-    margin: 0 auto 2rem;
-    font-size: 0.92rem;
-  }
-
-  .summary-card {
-    background: var(--dark3);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: left;
-    margin-bottom: 1rem;
-  }
-
-  .summary-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: var(--lime);
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-
-  .summary-item {
-    display: flex;
-    gap: 0.8rem;
-    padding: 0.4rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.85rem;
-  }
-
-  .summary-item:last-child { border-bottom: none; }
-
-  .summary-item .si-label {
-    color: var(--muted);
-    min-width: 140px;
-    flex-shrink: 0;
-  }
-
-  .summary-item .si-val {
-    color: var(--text);
-    word-break: break-word;
-  }
-
-  .btn-print {
-    background: transparent;
-    border: 1px solid var(--lime);
-    color: var(--lime);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.04em;
-    padding: 0.7rem 1.8rem;
-    border-radius: 7px;
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    margin-right: 0.6rem;
-  }
-
-  .btn-print:hover { background: rgba(202,236,48,0.08); }
-
-  @media print {
-    .progress-bar-wrap, .nav-row, .btn-print, .btn-primary, .page-header .header-title { display: none; }
-    body { background: #fff; color: #111; }
-    .section { display: block !important; break-inside: avoid; }
-    .summary-card { border: 1px solid #ccc; }
-  }
-
-  ::placeholder { color: rgba(240,237,230,0.2); }
+  :root { --lime:#CAEC30;--dark:#1A1A1A;--dark2:#222222;--dark3:#2B2B2B;--border:rgba(255,255,255,0.08);--text:#F0EDE6;--muted:rgba(240,237,230,0.45); }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--dark);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.7;min-height:100vh}
+  .page-header{background:var(--dark2);border-bottom:1px solid var(--border);padding:2.5rem 2rem 2rem;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+  .logo-mark{font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;color:var(--lime);letter-spacing:-0.04em;line-height:1}
+  .logo-sub{font-family:'Syne',sans-serif;font-size:0.62rem;font-weight:600;letter-spacing:0.22em;color:var(--muted);text-transform:uppercase;margin-top:3px}
+  .header-title{text-align:right}
+  .header-title h1{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;color:var(--text);letter-spacing:-0.02em}
+  .header-title p{font-size:0.8rem;color:var(--muted);margin-top:3px}
+  .progress-bar-wrap{background:var(--dark2);padding:0 2rem;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:10}
+  .progress-bar{height:2px;background:var(--border);width:100%}
+  .progress-fill{height:2px;background:var(--lime);width:0%;transition:width 0.4s ease}
+  .step-labels{display:flex;gap:0;font-size:0.72rem;color:var(--muted);padding:0.65rem 0;overflow-x:auto}
+  .step-label{flex:1;text-align:center;font-family:'Syne',sans-serif;font-weight:600;letter-spacing:0.03em;white-space:nowrap;padding:0 4px;transition:color 0.3s;cursor:pointer;font-size:0.7rem}
+  .step-label.active{color:var(--lime)}
+  .step-label.done{color:rgba(202,236,48,0.5)}
+  .container{max-width:760px;margin:0 auto;padding:2.5rem 2rem 5rem}
+  .section{display:none}
+  .section.active{display:block;animation:fadeIn 0.3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .section-header{margin-bottom:2rem;padding-bottom:1.2rem;border-bottom:1px solid var(--border)}
+  .section-num{font-family:'Syne',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.25em;color:var(--lime);text-transform:uppercase;margin-bottom:0.4rem}
+  .section-title{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1.15}
+  .section-desc{margin-top:0.6rem;font-size:0.88rem;color:var(--muted)}
+  .question-block{margin-bottom:1.8rem}
+  label.q-label{display:block;font-family:'Syne',sans-serif;font-weight:600;font-size:0.92rem;color:var(--text);margin-bottom:0.3rem;letter-spacing:-0.01em}
+  .q-hint{font-size:0.78rem;color:var(--muted);margin-bottom:0.6rem;line-height:1.5}
+  input[type="text"],input[type="url"],textarea,select{width:100%;background:var(--dark3);border:1px solid var(--border);border-radius:8px;padding:0.7rem 0.9rem;color:var(--text);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.2s;resize:vertical;-webkit-appearance:none}
+  input[type="text"]:focus,input[type="url"]:focus,textarea:focus,select:focus{border-color:var(--lime)}
+  textarea{min-height:90px}
+  select option{background:var(--dark2)}
+  .radio-group,.check-group{display:flex;flex-wrap:wrap;gap:0.5rem}
+  .radio-group label,.check-group label{display:flex;align-items:center;gap:6px;background:var(--dark3);border:1px solid var(--border);border-radius:6px;padding:0.45rem 0.85rem;font-size:0.85rem;cursor:pointer;transition:all 0.2s;color:var(--muted);font-family:'DM Sans',sans-serif}
+  .radio-group input,.check-group input{accent-color:var(--lime);width:14px;height:14px}
+  .radio-group label:has(input:checked),.check-group label:has(input:checked){border-color:var(--lime);color:var(--lime);background:rgba(202,236,48,0.06)}
+  .scale-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:0.8rem;padding:0.6rem 0;border-bottom:1px solid var(--border)}
+  .scale-row:last-child{border-bottom:none}
+  .scale-row .pole{font-size:0.82rem;color:var(--muted)}
+  .scale-row .pole.right{text-align:right}
+  .scale-dots{display:flex;gap:6px;justify-content:center}
+  .scale-dots span{width:28px;height:28px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.7rem;cursor:pointer;color:var(--muted);transition:all 0.2s;font-family:'Syne',sans-serif}
+  .scale-dots span:hover{border-color:rgba(202,236,48,0.4);color:var(--lime)}
+  .scale-dots span.selected{background:var(--lime);border-color:var(--lime);color:var(--dark);font-weight:700}
+  .color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:0.6rem}
+  .color-swatch{position:relative;cursor:pointer}
+  .color-swatch input[type="checkbox"]{position:absolute;opacity:0;width:0;height:0}
+  .color-swatch .sw-inner{border-radius:8px;height:56px;border:2px solid transparent;transition:all 0.2s;display:flex;align-items:flex-end;padding:4px 6px}
+  .color-swatch input:checked+.sw-inner{border-color:var(--lime);box-shadow:0 0 0 2px rgba(202,236,48,0.3)}
+  .sw-name{font-size:0.65rem;font-family:'Syne',sans-serif;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;padding:2px 5px;border-radius:4px;background:rgba(0,0,0,0.3)}
+  .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:540px){.cols-2{grid-template-columns:1fr}}
+  .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border)}
+  .btn{font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.04em;padding:0.6rem 1.5rem;border-radius:7px;border:none;cursor:pointer;transition:all 0.2s;text-transform:uppercase}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--muted)}
+  .btn-outline:hover{border-color:rgba(255,255,255,0.25);color:var(--text)}
+  .btn-primary{background:var(--lime);color:var(--dark)}
+  .btn-primary:hover{background:#d4f03a}
+  .step-counter{font-size:0.78rem;color:var(--muted);font-family:'Syne',sans-serif}
+  .step-counter span{color:var(--lime);font-weight:700}
+  .final-section{text-align:center;padding:3rem 0}
+  .check-icon{width:64px;height:64px;border-radius:50%;background:rgba(202,236,48,0.1);border:2px solid var(--lime);margin:0 auto 1.5rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem}
+  .final-section h2{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--text);margin-bottom:0.7rem;letter-spacing:-0.04em}
+  .final-section p{color:var(--muted);max-width:440px;margin:0 auto 2rem;font-size:0.92rem}
+  .btn-pdf{background:var(--lime);color:var(--dark);font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;letter-spacing:0.04em;padding:0.75rem 2rem;border-radius:8px;border:none;cursor:pointer;text-transform:uppercase;transition:all 0.2s;margin-right:0.6rem}
+  .btn-pdf:hover{background:#d4f03a}
+  .btn-reset{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'Syne',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.04em;padding:0.7rem 1.5rem;border-radius:7px;cursor:pointer;text-transform:uppercase;transition:all 0.2s}
+  .btn-reset:hover{border-color:rgba(255,255,255,0.25);color:var(--text)}
+  ::placeholder{color:rgba(240,237,230,0.2)}
 </style>
 </head>
 <body>
@@ -558,52 +96,45 @@
 
 <div class="container">
 
-  <!-- SEÇÃO 1 -->
   <div class="section active" id="sec-1">
     <div class="section-header">
       <div class="section-num">01 / 08</div>
       <div class="section-title">Sobre a Marca</div>
       <div class="section-desc">Vamos entender quem você é antes de criar como você aparece.</div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Nome da marca / empresa</label>
       <input type="text" id="q-nome" placeholder="Ex: Studio Flow, Clínica Bem Viver..." />
     </div>
-
     <div class="question-block">
       <label class="q-label">O que você faz? Descreva sua empresa com suas próprias palavras.</label>
       <div class="q-hint">Não precisa ser formal. Fale como você explicaria para um amigo.</div>
       <textarea id="q-oque" placeholder="Somos uma..."></textarea>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Há quanto tempo existe? Está começando agora ou já tem história?</label>
+      <label class="q-label">Há quanto tempo existe?</label>
       <div class="radio-group">
-        <label><input type="radio" name="tempo" value="nova"> Marca nova / nunca tive logo</label>
-        <label><input type="radio" name="tempo" value="1-3"> 1 a 3 anos</label>
-        <label><input type="radio" name="tempo" value="3-10"> 3 a 10 anos</label>
-        <label><input type="radio" name="tempo" value="10+"> Mais de 10 anos</label>
+        <label><input type="radio" name="tempo" value="Marca nova / nunca tive logo"> Marca nova / nunca tive logo</label>
+        <label><input type="radio" name="tempo" value="1 a 3 anos"> 1 a 3 anos</label>
+        <label><input type="radio" name="tempo" value="3 a 10 anos"> 3 a 10 anos</label>
+        <label><input type="radio" name="tempo" value="Mais de 10 anos"> Mais de 10 anos</label>
       </div>
     </div>
-
     <div class="question-block">
       <label class="q-label">O que motivou a busca por uma identidade visual agora?</label>
       <div class="check-group">
-        <label><input type="checkbox" name="motivo" value="lancamento"> Lançamento da marca</label>
-        <label><input type="checkbox" name="motivo" value="rebranding"> Rebranding / renovação</label>
-        <label><input type="checkbox" name="motivo" value="crescimento"> Crescimento do negócio</label>
-        <label><input type="checkbox" name="motivo" value="profissionalizacao"> Profissionalização</label>
-        <label><input type="checkbox" name="motivo" value="concorrencia"> Diferenciação da concorrência</label>
-        <label><input type="checkbox" name="motivo" value="outro"> Outro</label>
+        <label><input type="checkbox" name="motivo" value="Lançamento da marca"> Lançamento da marca</label>
+        <label><input type="checkbox" name="motivo" value="Rebranding / renovação"> Rebranding / renovação</label>
+        <label><input type="checkbox" name="motivo" value="Crescimento do negócio"> Crescimento do negócio</label>
+        <label><input type="checkbox" name="motivo" value="Profissionalização"> Profissionalização</label>
+        <label><input type="checkbox" name="motivo" value="Diferenciação da concorrência"> Diferenciação da concorrência</label>
+        <label><input type="checkbox" name="motivo" value="Outro"> Outro</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Se tiver, compartilhe links de redes sociais, site ou portfólio atual.</label>
+      <label class="q-label">Links de redes sociais, site ou portfólio atual.</label>
       <input type="url" id="q-links" placeholder="https://..." />
     </div>
-
     <div class="nav-row">
       <div></div>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -613,64 +144,51 @@
     </div>
   </div>
 
-  <!-- SEÇÃO 2 -->
   <div class="section" id="sec-2">
     <div class="section-header">
       <div class="section-num">02 / 08</div>
       <div class="section-title">Público & Mercado</div>
       <div class="section-desc">Para quem você está falando? Entender seu cliente ideal molda cada escolha visual.</div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Quem é o seu cliente ideal? Descreva como se fosse uma pessoa real.</label>
       <div class="q-hint">Exemplo: "Mulheres entre 28 e 40 anos, profissionais liberais, que valorizam saúde e praticidade..."</div>
       <textarea id="q-publico" placeholder="Meu cliente ideal é..."></textarea>
     </div>
-
     <div class="cols-2">
       <div class="question-block">
         <label class="q-label">Faixa etária predominante</label>
         <select id="q-idade">
           <option value="">Selecione...</option>
-          <option>18 – 24 anos</option>
-          <option>25 – 34 anos</option>
-          <option>35 – 44 anos</option>
-          <option>45 – 54 anos</option>
-          <option>55+ anos</option>
-          <option>Diversificado</option>
+          <option>18 – 24 anos</option><option>25 – 34 anos</option><option>35 – 44 anos</option>
+          <option>45 – 54 anos</option><option>55+ anos</option><option>Diversificado</option>
         </select>
       </div>
       <div class="question-block">
         <label class="q-label">Poder aquisitivo</label>
         <select id="q-renda">
           <option value="">Selecione...</option>
-          <option>Popular / C e D</option>
-          <option>Médio / Classe C</option>
-          <option>Médio-alto / Classe B</option>
-          <option>Alto / Classe A</option>
-          <option>Ultra Premium / Luxo</option>
+          <option>Popular / C e D</option><option>Médio / Classe C</option>
+          <option>Médio-alto / Classe B</option><option>Alto / Classe A</option><option>Ultra Premium / Luxo</option>
         </select>
       </div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Onde você atende / atua?</label>
       <div class="radio-group">
-        <label><input type="radio" name="atuacao" value="local"> Local / bairro</label>
-        <label><input type="radio" name="atuacao" value="cidade"> Cidade</label>
-        <label><input type="radio" name="atuacao" value="regional"> Regional / Estado</label>
-        <label><input type="radio" name="atuacao" value="nacional"> Nacional</label>
-        <label><input type="radio" name="atuacao" value="global"> Internacional</label>
-        <label><input type="radio" name="atuacao" value="digital"> 100% Digital</label>
+        <label><input type="radio" name="atuacao" value="Local / bairro"> Local / bairro</label>
+        <label><input type="radio" name="atuacao" value="Cidade"> Cidade</label>
+        <label><input type="radio" name="atuacao" value="Regional / Estado"> Regional / Estado</label>
+        <label><input type="radio" name="atuacao" value="Nacional"> Nacional</label>
+        <label><input type="radio" name="atuacao" value="Internacional"> Internacional</label>
+        <label><input type="radio" name="atuacao" value="100% Digital"> 100% Digital</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Liste de 2 a 4 concorrentes diretos (mesmo nicho ou público).</label>
+      <label class="q-label">Liste de 2 a 4 concorrentes diretos.</label>
       <div class="q-hint">Inclua o que você admira neles e o que quer se diferenciar.</div>
       <textarea id="q-concorrentes" placeholder="Concorrente A — o que gosta: ... / o que quer diferente: ..."></textarea>
     </div>
-
     <div class="nav-row">
       <button class="btn btn-outline" onclick="goPrev()">← Voltar</button>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -680,54 +198,46 @@
     </div>
   </div>
 
-  <!-- SEÇÃO 3 -->
   <div class="section" id="sec-3">
     <div class="section-header">
       <div class="section-num">03 / 08</div>
       <div class="section-title">Personalidade da Marca</div>
       <div class="section-desc">Se a marca fosse uma pessoa, como ela seria? Essa etapa define o tom de tudo.</div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Escolha até 4 adjetivos que definem sua marca.</label>
       <div class="check-group">
-        <label><input type="checkbox" name="adj"> Moderno</label>
-        <label><input type="checkbox" name="adj"> Clássico</label>
-        <label><input type="checkbox" name="adj"> Ousado</label>
-        <label><input type="checkbox" name="adj"> Sóbrio</label>
-        <label><input type="checkbox" name="adj"> Sofisticado</label>
-        <label><input type="checkbox" name="adj"> Acessível</label>
-        <label><input type="checkbox" name="adj"> Divertido</label>
-        <label><input type="checkbox" name="adj"> Sério</label>
-        <label><input type="checkbox" name="adj"> Minimalista</label>
-        <label><input type="checkbox" name="adj"> Orgânico</label>
-        <label><input type="checkbox" name="adj"> Tecnológico</label>
-        <label><input type="checkbox" name="adj"> Humano</label>
-        <label><input type="checkbox" name="adj"> Luxuoso</label>
-        <label><input type="checkbox" name="adj"> Popular</label>
-        <label><input type="checkbox" name="adj"> Criativo</label>
-        <label><input type="checkbox" name="adj"> Confiável</label>
+        <label><input type="checkbox" name="adj" value="Moderno"> Moderno</label>
+        <label><input type="checkbox" name="adj" value="Clássico"> Clássico</label>
+        <label><input type="checkbox" name="adj" value="Ousado"> Ousado</label>
+        <label><input type="checkbox" name="adj" value="Sóbrio"> Sóbrio</label>
+        <label><input type="checkbox" name="adj" value="Sofisticado"> Sofisticado</label>
+        <label><input type="checkbox" name="adj" value="Acessível"> Acessível</label>
+        <label><input type="checkbox" name="adj" value="Divertido"> Divertido</label>
+        <label><input type="checkbox" name="adj" value="Sério"> Sério</label>
+        <label><input type="checkbox" name="adj" value="Minimalista"> Minimalista</label>
+        <label><input type="checkbox" name="adj" value="Orgânico"> Orgânico</label>
+        <label><input type="checkbox" name="adj" value="Tecnológico"> Tecnológico</label>
+        <label><input type="checkbox" name="adj" value="Humano"> Humano</label>
+        <label><input type="checkbox" name="adj" value="Luxuoso"> Luxuoso</label>
+        <label><input type="checkbox" name="adj" value="Popular"> Popular</label>
+        <label><input type="checkbox" name="adj" value="Criativo"> Criativo</label>
+        <label><input type="checkbox" name="adj" value="Confiável"> Confiável</label>
       </div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Posicione sua marca entre cada par de opostos.</label>
       <div class="q-hint">Clique no número que melhor representa onde você quer estar.</div>
-
       <div id="scales-container"></div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Se sua marca fosse uma pessoa famosa ou personagem, quem seria e por quê?</label>
-      <div class="q-hint">Pode ser real, fictício, histórico — o que importa é o arquétipo que evoca.</div>
+      <label class="q-label">Se sua marca fosse uma pessoa famosa, quem seria e por quê?</label>
       <textarea id="q-pessoa" placeholder="Seria tipo o(a)... porque..."></textarea>
     </div>
-
     <div class="question-block">
       <label class="q-label">Quais são as 3 palavras que você NUNCA quer associadas à sua marca?</label>
       <input type="text" id="q-nao-quer" placeholder="Ex: barato, antiquado, genérico" />
     </div>
-
     <div class="nav-row">
       <button class="btn btn-outline" onclick="goPrev()">← Voltar</button>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -737,47 +247,39 @@
     </div>
   </div>
 
-  <!-- SEÇÃO 4 -->
   <div class="section" id="sec-4">
     <div class="section-header">
       <div class="section-num">04 / 08</div>
       <div class="section-title">Referências Visuais</div>
       <div class="section-desc">Mostrar é mais rápido do que descrever. Use exemplos para calibrar nossa visão.</div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Você tem referências de marcas / logos que admira? (do mesmo setor ou não)</label>
-      <div class="q-hint">Cole links, nomes de marcas ou descreva. O que chama atenção nelas?</div>
-      <textarea id="q-ref-ama" placeholder="Gosto da identidade da marca X porque... / Links: "></textarea>
+      <label class="q-label">Referências de marcas / logos que admira?</label>
+      <div class="q-hint">Cole links, nomes ou descreva. O que chama atenção nelas?</div>
+      <textarea id="q-ref-ama" placeholder="Gosto da identidade da marca X porque..."></textarea>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Existe alguma identidade visual que você NÃO quer nem de longe?</label>
-      <div class="q-hint">Descreva o que incomoda — cores, estilo, sensação.</div>
+      <label class="q-label">Identidade visual que você NÃO quer nem de longe?</label>
       <textarea id="q-ref-odeia" placeholder="Não me identifico com marcas que têm..."></textarea>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Pense em marcas de outros setores que você acha visualmente incríveis. Quais são?</label>
-      <div class="q-hint">Um banco, uma roupa, uma tech company... Não precisa ser do seu ramo.</div>
-      <textarea id="q-ref-outros" placeholder="Ex: Apple pela simplicidade, Nike pela força, Heinz pela nostalgia..."></textarea>
+      <label class="q-label">Marcas de outros setores que você acha visualmente incríveis?</label>
+      <textarea id="q-ref-outros" placeholder="Ex: Apple pela simplicidade, Nike pela força..."></textarea>
     </div>
-
     <div class="question-block">
       <label class="q-label">Que estilo visual mais combina com o que você imagina?</label>
       <div class="radio-group">
-        <label><input type="radio" name="estilo-visual" value="minimalista"> Minimalista / limpo</label>
-        <label><input type="radio" name="estilo-visual" value="detalhado"> Rico em detalhes</label>
-        <label><input type="radio" name="estilo-visual" value="geometrico"> Geométrico / preciso</label>
-        <label><input type="radio" name="estilo-visual" value="organico"> Orgânico / artesanal</label>
-        <label><input type="radio" name="estilo-visual" value="retro"> Retrô / vintage</label>
-        <label><input type="radio" name="estilo-visual" value="futurista"> Futurista / tech</label>
-        <label><input type="radio" name="estilo-visual" value="editorial"> Editorial / tipográfico</label>
-        <label><input type="radio" name="estilo-visual" value="expressivo"> Expressivo / ilustrativo</label>
-        <label><input type="radio" name="estilo-visual" value="nao-sei"> Ainda não sei / aberto</label>
+        <label><input type="radio" name="estilo-visual" value="Minimalista / limpo"> Minimalista / limpo</label>
+        <label><input type="radio" name="estilo-visual" value="Rico em detalhes"> Rico em detalhes</label>
+        <label><input type="radio" name="estilo-visual" value="Geométrico / preciso"> Geométrico / preciso</label>
+        <label><input type="radio" name="estilo-visual" value="Orgânico / artesanal"> Orgânico / artesanal</label>
+        <label><input type="radio" name="estilo-visual" value="Retrô / vintage"> Retrô / vintage</label>
+        <label><input type="radio" name="estilo-visual" value="Futurista / tech"> Futurista / tech</label>
+        <label><input type="radio" name="estilo-visual" value="Editorial / tipográfico"> Editorial / tipográfico</label>
+        <label><input type="radio" name="estilo-visual" value="Expressivo / ilustrativo"> Expressivo / ilustrativo</label>
+        <label><input type="radio" name="estilo-visual" value="Ainda não sei / aberto"> Ainda não sei / aberto</label>
       </div>
     </div>
-
     <div class="nav-row">
       <button class="btn btn-outline" onclick="goPrev()">← Voltar</button>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -787,67 +289,61 @@
     </div>
   </div>
 
-  <!-- SEÇÃO 5 -->
   <div class="section" id="sec-5">
     <div class="section-header">
       <div class="section-num">05 / 08</div>
       <div class="section-title">Paleta de Cores</div>
-      <div class="section-desc">Cores comunicam emoções antes de qualquer palavra. Vamos entender sua intuição.</div>
+      <div class="section-desc">Cores comunicam emoções antes de qualquer palavra.</div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Que sensação as cores da sua marca devem transmitir?</label>
       <div class="check-group">
-        <label><input type="checkbox" name="sensacao-cor"> Confiança / segurança</label>
-        <label><input type="checkbox" name="sensacao-cor"> Energia / dinamismo</label>
-        <label><input type="checkbox" name="sensacao-cor"> Calma / tranquilidade</label>
-        <label><input type="checkbox" name="sensacao-cor"> Luxo / exclusividade</label>
-        <label><input type="checkbox" name="sensacao-cor"> Alegria / leveza</label>
-        <label><input type="checkbox" name="sensacao-cor"> Sofisticação</label>
-        <label><input type="checkbox" name="sensacao-cor"> Naturalidade / saúde</label>
-        <label><input type="checkbox" name="sensacao-cor"> Poder / autoridade</label>
-        <label><input type="checkbox" name="sensacao-cor"> Criatividade / inovação</label>
-        <label><input type="checkbox" name="sensacao-cor"> Acolhimento / afeto</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Confiança / segurança"> Confiança / segurança</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Energia / dinamismo"> Energia / dinamismo</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Calma / tranquilidade"> Calma / tranquilidade</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Luxo / exclusividade"> Luxo / exclusividade</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Alegria / leveza"> Alegria / leveza</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Sofisticação"> Sofisticação</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Naturalidade / saúde"> Naturalidade / saúde</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Poder / autoridade"> Poder / autoridade</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Criatividade / inovação"> Criatividade / inovação</label>
+        <label><input type="checkbox" name="sensacao-cor" value="Acolhimento / afeto"> Acolhimento / afeto</label>
       </div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Selecione as famílias de cores que mais combinam com sua marca.</label>
       <div class="color-grid">
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="preto"><div class="sw-inner" style="background:#111"><span class="sw-name" style="color:#fff">Preto</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="branco"><div class="sw-inner" style="background:#F5F4EF"><span class="sw-name" style="color:#444">Branco</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="cinza"><div class="sw-inner" style="background:#888"><span class="sw-name">Cinza</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="azul-escuro"><div class="sw-inner" style="background:#1B3A6B"><span class="sw-name">Azul escuro</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="azul-vivo"><div class="sw-inner" style="background:#2979FF"><span class="sw-name">Azul vivo</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="verde"><div class="sw-inner" style="background:#2E7D32"><span class="sw-name">Verde</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="verde-neon"><div class="sw-inner" style="background:#CAEC30"><span class="sw-name" style="color:#111">Verde neon</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="amarelo"><div class="sw-inner" style="background:#FFD600"><span class="sw-name" style="color:#111">Amarelo</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="laranja"><div class="sw-inner" style="background:#E65100"><span class="sw-name">Laranja</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="vermelho"><div class="sw-inner" style="background:#C62828"><span class="sw-name">Vermelho</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="rosa"><div class="sw-inner" style="background:#E91E8C"><span class="sw-name">Rosa</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="roxo"><div class="sw-inner" style="background:#6A1B9A"><span class="sw-name">Roxo</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="marrom"><div class="sw-inner" style="background:#5D4037"><span class="sw-name">Marrom</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="dourado"><div class="sw-inner" style="background:#BFA53B"><span class="sw-name" style="color:#111">Dourado</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="terracota"><div class="sw-inner" style="background:#BF5B3A"><span class="sw-name">Terracota</span></div></label>
-        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="teal"><div class="sw-inner" style="background:#00838F"><span class="sw-name">Teal</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Preto"><div class="sw-inner" style="background:#111"><span class="sw-name" style="color:#fff">Preto</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Branco"><div class="sw-inner" style="background:#F5F4EF"><span class="sw-name" style="color:#444">Branco</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Cinza"><div class="sw-inner" style="background:#888"><span class="sw-name">Cinza</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Azul escuro"><div class="sw-inner" style="background:#1B3A6B"><span class="sw-name">Azul escuro</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Azul vivo"><div class="sw-inner" style="background:#2979FF"><span class="sw-name">Azul vivo</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Verde"><div class="sw-inner" style="background:#2E7D32"><span class="sw-name">Verde</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Verde neon"><div class="sw-inner" style="background:#CAEC30"><span class="sw-name" style="color:#111">Verde neon</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Amarelo"><div class="sw-inner" style="background:#FFD600"><span class="sw-name" style="color:#111">Amarelo</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Laranja"><div class="sw-inner" style="background:#E65100"><span class="sw-name">Laranja</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Vermelho"><div class="sw-inner" style="background:#C62828"><span class="sw-name">Vermelho</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Rosa"><div class="sw-inner" style="background:#E91E8C"><span class="sw-name">Rosa</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Roxo"><div class="sw-inner" style="background:#6A1B9A"><span class="sw-name">Roxo</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Marrom"><div class="sw-inner" style="background:#5D4037"><span class="sw-name">Marrom</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Dourado"><div class="sw-inner" style="background:#BFA53B"><span class="sw-name" style="color:#111">Dourado</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Terracota"><div class="sw-inner" style="background:#BF5B3A"><span class="sw-name">Terracota</span></div></label>
+        <label class="color-swatch"><input type="checkbox" name="cor-fam" value="Teal"><div class="sw-inner" style="background:#00838F"><span class="sw-name">Teal</span></div></label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Já tem alguma cor definida que precisa manter? (código hex, referência pantone, etc.)</label>
-      <input type="text" id="q-cor-fixa" placeholder="Ex: #FF4B00, Pantone 485, azul do meu uniforme..." />
+      <label class="q-label">Já tem alguma cor definida que precisa manter?</label>
+      <input type="text" id="q-cor-fixa" placeholder="Ex: #FF4B00, Pantone 485..." />
     </div>
-
     <div class="question-block">
       <label class="q-label">Prefere uma paleta...</label>
       <div class="radio-group">
-        <label><input type="radio" name="paleta-qtd" value="monocromatica"> Monocromática (1 cor base)</label>
-        <label><input type="radio" name="paleta-qtd" value="dupla"> Dupla (2 cores)</label>
-        <label><input type="radio" name="paleta-qtd" value="variada"> Variada (3+ cores)</label>
-        <label><input type="radio" name="paleta-qtd" value="indefinido"> Deixo a critério do designer</label>
+        <label><input type="radio" name="paleta-qtd" value="Monocromática (1 cor base)"> Monocromática</label>
+        <label><input type="radio" name="paleta-qtd" value="Dupla (2 cores)"> Dupla (2 cores)</label>
+        <label><input type="radio" name="paleta-qtd" value="Variada (3+ cores)"> Variada (3+)</label>
+        <label><input type="radio" name="paleta-qtd" value="Deixo a critério do designer"> Deixo a critério</label>
       </div>
     </div>
-
     <div class="nav-row">
       <button class="btn btn-outline" onclick="goPrev()">← Voltar</button>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -857,55 +353,48 @@
     </div>
   </div>
 
-  <!-- SEÇÃO 6 -->
   <div class="section" id="sec-6">
     <div class="section-header">
       <div class="section-num">06 / 08</div>
       <div class="section-title">Tipografia & Símbolo</div>
       <div class="section-desc">A tipografia é a voz visual da sua marca. O símbolo é seu rosto.</div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Que sensação a tipografia da marca deve passar?</label>
       <div class="radio-group">
-        <label><input type="radio" name="tipo-feel" value="serifado"> Serifada — clássica, jornalística, literária</label>
-        <label><input type="radio" name="tipo-feel" value="sem-serifa"> Sem serifa — moderna, limpa, direta</label>
-        <label><input type="radio" name="tipo-feel" value="script"> Script / manuscrita — humanizada, expressiva</label>
-        <label><input type="radio" name="tipo-feel" value="display"> Display / experimental — marcante, única</label>
-        <label><input type="radio" name="tipo-feel" value="geometrica"> Geométrica — tech, precisa, minimalista</label>
-        <label><input type="radio" name="tipo-feel" value="criterio"> Deixo a critério do designer</label>
+        <label><input type="radio" name="tipo-feel" value="Serifada — clássica, jornalística"> Serifada — clássica, literária</label>
+        <label><input type="radio" name="tipo-feel" value="Sem serifa — moderna, limpa, direta"> Sem serifa — moderna, limpa</label>
+        <label><input type="radio" name="tipo-feel" value="Script / manuscrita — humanizada"> Script / manuscrita</label>
+        <label><input type="radio" name="tipo-feel" value="Display / experimental — marcante"> Display / experimental</label>
+        <label><input type="radio" name="tipo-feel" value="Geométrica — tech, precisa"> Geométrica — tech</label>
+        <label><input type="radio" name="tipo-feel" value="Deixo a critério do designer"> Deixo a critério</label>
       </div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Para o símbolo / logo, qual abordagem prefere?</label>
       <div class="check-group">
-        <label><input type="checkbox" name="logo-tipo"> Só o nome (logotipo)</label>
-        <label><input type="checkbox" name="logo-tipo"> Ícone + nome</label>
-        <label><input type="checkbox" name="logo-tipo"> Só o ícone / símbolo</label>
-        <label><input type="checkbox" name="logo-tipo"> Monograma / iniciais</label>
-        <label><input type="checkbox" name="logo-tipo"> Mascote / personagem</label>
-        <label><input type="checkbox" name="logo-tipo"> Aberto — qualquer abordagem</label>
+        <label><input type="checkbox" name="logo-tipo" value="Só o nome (logotipo)"> Só o nome</label>
+        <label><input type="checkbox" name="logo-tipo" value="Ícone + nome"> Ícone + nome</label>
+        <label><input type="checkbox" name="logo-tipo" value="Só o ícone / símbolo"> Só o ícone</label>
+        <label><input type="checkbox" name="logo-tipo" value="Monograma / iniciais"> Monograma</label>
+        <label><input type="checkbox" name="logo-tipo" value="Mascote / personagem"> Mascote</label>
+        <label><input type="checkbox" name="logo-tipo" value="Aberto — qualquer abordagem"> Aberto</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Se o seu logo tivesse um símbolo, ele seria mais próximo de...</label>
+      <label class="q-label">Se o logo tivesse um símbolo, seria mais...</label>
       <div class="radio-group">
-        <label><input type="radio" name="simbolo-feel" value="abstrato"> Abstrato / geométrico</label>
-        <label><input type="radio" name="simbolo-feel" value="literal"> Literal / representativo do negócio</label>
-        <label><input type="radio" name="simbolo-feel" value="metaforico"> Metafórico / conceitual</label>
-        <label><input type="radio" name="simbolo-feel" value="lettering"> Lettering integrado à tipografia</label>
-        <label><input type="radio" name="simbolo-feel" value="nao-sei"> Não tenho preferência</label>
+        <label><input type="radio" name="simbolo-feel" value="Abstrato / geométrico"> Abstrato / geométrico</label>
+        <label><input type="radio" name="simbolo-feel" value="Literal / representativo"> Literal / representativo</label>
+        <label><input type="radio" name="simbolo-feel" value="Metafórico / conceitual"> Metafórico / conceitual</label>
+        <label><input type="radio" name="simbolo-feel" value="Lettering integrado"> Lettering integrado</label>
+        <label><input type="radio" name="simbolo-feel" value="Não tenho preferência"> Sem preferência</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Tem algum elemento, forma ou conceito que gostaria de ver incorporado no símbolo?</label>
-      <div class="q-hint">Pode ser algo do seu segmento, um valor, uma metáfora que você gosta...</div>
-      <textarea id="q-simbolo-ideia" placeholder="Ex: quero algo que remeta a movimento, crescimento, conexão..."></textarea>
+      <label class="q-label">Algum elemento ou conceito para incorporar no símbolo?</label>
+      <textarea id="q-simbolo-ideia" placeholder="Ex: algo que remeta a movimento, crescimento, conexão..."></textarea>
     </div>
-
     <div class="nav-row">
       <button class="btn btn-outline" onclick="goPrev()">← Voltar</button>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -915,61 +404,55 @@
     </div>
   </div>
 
-  <!-- SEÇÃO 7 -->
   <div class="section" id="sec-7">
     <div class="section-header">
       <div class="section-num">07 / 08</div>
       <div class="section-title">Aplicações & Entregáveis</div>
       <div class="section-desc">Onde a marca vai viver? Isso define o que precisa ser criado.</div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Onde a identidade será aplicada? Selecione todos que se aplicam.</label>
+      <label class="q-label">Onde a identidade será aplicada?</label>
       <div class="check-group">
-        <label><input type="checkbox" name="aplicacao"> Instagram / Stories</label>
-        <label><input type="checkbox" name="aplicacao"> Facebook</label>
-        <label><input type="checkbox" name="aplicacao"> LinkedIn</label>
-        <label><input type="checkbox" name="aplicacao"> YouTube</label>
-        <label><input type="checkbox" name="aplicacao"> TikTok</label>
-        <label><input type="checkbox" name="aplicacao"> Site / Landing page</label>
-        <label><input type="checkbox" name="aplicacao"> Cartão de visita</label>
-        <label><input type="checkbox" name="aplicacao"> Papelaria (papel timbrado, envelope)</label>
-        <label><input type="checkbox" name="aplicacao"> Uniforme / vestuário</label>
-        <label><input type="checkbox" name="aplicacao"> Embalagens / rótulos</label>
-        <label><input type="checkbox" name="aplicacao"> Sinalização / fachada</label>
-        <label><input type="checkbox" name="aplicacao"> Apresentações (PPT)</label>
-        <label><input type="checkbox" name="aplicacao"> Vídeos / animações</label>
-        <label><input type="checkbox" name="aplicacao"> Brindes / merchandising</label>
-        <label><input type="checkbox" name="aplicacao"> App / produto digital</label>
+        <label><input type="checkbox" name="aplicacao" value="Instagram / Stories"> Instagram / Stories</label>
+        <label><input type="checkbox" name="aplicacao" value="Facebook"> Facebook</label>
+        <label><input type="checkbox" name="aplicacao" value="LinkedIn"> LinkedIn</label>
+        <label><input type="checkbox" name="aplicacao" value="YouTube"> YouTube</label>
+        <label><input type="checkbox" name="aplicacao" value="TikTok"> TikTok</label>
+        <label><input type="checkbox" name="aplicacao" value="Site / Landing page"> Site / Landing page</label>
+        <label><input type="checkbox" name="aplicacao" value="Cartão de visita"> Cartão de visita</label>
+        <label><input type="checkbox" name="aplicacao" value="Papelaria"> Papelaria</label>
+        <label><input type="checkbox" name="aplicacao" value="Uniforme / vestuário"> Uniforme / vestuário</label>
+        <label><input type="checkbox" name="aplicacao" value="Embalagens / rótulos"> Embalagens / rótulos</label>
+        <label><input type="checkbox" name="aplicacao" value="Sinalização / fachada"> Sinalização / fachada</label>
+        <label><input type="checkbox" name="aplicacao" value="Apresentações (PPT)"> Apresentações (PPT)</label>
+        <label><input type="checkbox" name="aplicacao" value="Vídeos / animações"> Vídeos / animações</label>
+        <label><input type="checkbox" name="aplicacao" value="Brindes / merchandising"> Brindes</label>
+        <label><input type="checkbox" name="aplicacao" value="App / produto digital"> App / produto digital</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">A marca será usada principalmente em fundos claros, escuros ou ambos?</label>
+      <label class="q-label">Fundos predominantes de uso?</label>
       <div class="radio-group">
-        <label><input type="radio" name="fundo-uso" value="claro"> Fundos claros (branco, creme)</label>
-        <label><input type="radio" name="fundo-uso" value="escuro"> Fundos escuros</label>
-        <label><input type="radio" name="fundo-uso" value="ambos"> Ambos — preciso de versões</label>
-        <label><input type="radio" name="fundo-uso" value="coloridos"> Fundos coloridos / texturizados</label>
+        <label><input type="radio" name="fundo-uso" value="Fundos claros (branco, creme)"> Fundos claros</label>
+        <label><input type="radio" name="fundo-uso" value="Fundos escuros"> Fundos escuros</label>
+        <label><input type="radio" name="fundo-uso" value="Ambos — preciso de versões"> Ambos — preciso de versões</label>
+        <label><input type="radio" name="fundo-uso" value="Fundos coloridos / texturizados"> Coloridos / texturizados</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Quais formatos você precisará receber?</label>
+      <label class="q-label">Formatos de entrega necessários?</label>
       <div class="check-group">
-        <label><input type="checkbox" name="formato"> PNG (uso geral digital)</label>
-        <label><input type="checkbox" name="formato"> SVG (vetorial web)</label>
-        <label><input type="checkbox" name="formato"> PDF (impressão)</label>
-        <label><input type="checkbox" name="formato"> AI / EPS (arquivo fonte)</label>
-        <label><input type="checkbox" name="formato"> Não sei — me oriente</label>
+        <label><input type="checkbox" name="formato" value="PNG (uso geral digital)"> PNG</label>
+        <label><input type="checkbox" name="formato" value="SVG (vetorial web)"> SVG</label>
+        <label><input type="checkbox" name="formato" value="PDF (impressão)"> PDF</label>
+        <label><input type="checkbox" name="formato" value="AI / EPS (arquivo fonte)"> AI / EPS</label>
+        <label><input type="checkbox" name="formato" value="Não sei — me oriente"> Não sei</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Tem alguma restrição técnica ou de uso? (tamanho mínimo, bordado, serigrafia, etc.)</label>
-      <textarea id="q-restricao" placeholder="Ex: o logo vai ser bordado em camisa, então não pode ter detalhes muito finos..."></textarea>
+      <label class="q-label">Restrições técnicas ou de uso?</label>
+      <textarea id="q-restricao" placeholder="Ex: bordado em camisa, serigrafia..."></textarea>
     </div>
-
     <div class="nav-row">
       <button class="btn btn-outline" onclick="goPrev()">← Voltar</button>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -979,26 +462,22 @@
     </div>
   </div>
 
-  <!-- SEÇÃO 8 -->
   <div class="section" id="sec-8">
     <div class="section-header">
       <div class="section-num">08 / 08</div>
       <div class="section-title">Expectativas & Projeto</div>
       <div class="section-desc">A última etapa alinha nossas expectativas para um projeto sem surpresas.</div>
     </div>
-
     <div class="question-block">
       <label class="q-label">Como você descreveria o sucesso deste projeto?</label>
-      <div class="q-hint">O que você quer sentir quando ver a identidade pronta?</div>
       <textarea id="q-sucesso" placeholder="Quando ver o resultado final, quero sentir que..."></textarea>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Você tem algum prazo ou data limite para o projeto?</label>
+      <label class="q-label">Você tem algum prazo ou data limite?</label>
       <div class="cols-2">
         <div>
-          <div class="q-hint">Data de entrega desejada</div>
-          <input type="text" id="q-prazo" placeholder="Ex: até 20 de abril, ou 'urgente'" />
+          <div class="q-hint">Data desejada</div>
+          <input type="text" id="q-prazo" placeholder="Ex: até 20 de abril" />
         </div>
         <div>
           <div class="q-hint">Nível de urgência</div>
@@ -1012,28 +491,23 @@
         </div>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Quantas pessoas precisam aprovar a identidade visual?</label>
+      <label class="q-label">Quantas pessoas precisam aprovar a identidade?</label>
       <div class="radio-group">
-        <label><input type="radio" name="aprovadores" value="1"> Só eu</label>
-        <label><input type="radio" name="aprovadores" value="2-3"> 2 a 3 pessoas</label>
-        <label><input type="radio" name="aprovadores" value="equipe"> Equipe / sócios</label>
-        <label><input type="radio" name="aprovadores" value="diretoria"> Diretoria / conselho</label>
+        <label><input type="radio" name="aprovadores" value="Só eu"> Só eu</label>
+        <label><input type="radio" name="aprovadores" value="2 a 3 pessoas"> 2 a 3 pessoas</label>
+        <label><input type="radio" name="aprovadores" value="Equipe / sócios"> Equipe / sócios</label>
+        <label><input type="radio" name="aprovadores" value="Diretoria / conselho"> Diretoria / conselho</label>
       </div>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Existe algum elemento já definido que DEVE ser mantido?</label>
-      <div class="q-hint">Ex: uma cor de uniforme, um slogan, uma fonte específica, uma forma no logo antigo...</div>
+      <label class="q-label">Existe algum elemento que DEVE ser mantido?</label>
       <textarea id="q-manter" placeholder="Deve manter: ..."></textarea>
     </div>
-
     <div class="question-block">
-      <label class="q-label">Tem algo que ainda não perguntamos e que você considera essencial para o projeto?</label>
-      <textarea id="q-extra" placeholder="Observações livres, contexto adicional, dúvidas..."></textarea>
+      <label class="q-label">Algo mais que devemos saber?</label>
+      <textarea id="q-extra" placeholder="Observações livres, dúvidas..."></textarea>
     </div>
-
     <div class="nav-row">
       <button class="btn btn-outline" onclick="goPrev()">← Voltar</button>
       <div style="display:flex;align-items:center;gap:1rem">
@@ -1043,188 +517,269 @@
     </div>
   </div>
 
-  <!-- FINAL -->
   <div class="section" id="sec-final">
     <div class="final-section">
       <div class="check-icon">✓</div>
       <h2>Briefing completo!</h2>
-      <p>Suas respostas foram registradas. Agora temos o que precisamos para iniciar o desenvolvimento da sua identidade visual com precisão.</p>
+      <p>Suas respostas foram registradas. Clique em Gerar PDF para salvar o documento com a identidade visual da 321 Produções.</p>
       <div>
-        <button class="btn-print" onclick="window.print()">Imprimir / salvar PDF</button>
-        <button class="btn btn-primary" onclick="resetForm()">Novo briefing</button>
+        <button class="btn-pdf" onclick="generatePDF()">Gerar PDF</button>
+        <button class="btn-reset" onclick="resetForm()">Novo briefing</button>
       </div>
-    </div>
-
-    <div class="summary-card" id="summaryOutput">
-      <h3>Resumo das respostas</h3>
-      <div id="summaryItems"></div>
     </div>
   </div>
 
 </div>
 
 <script>
-const scales = [
-  ['Tradicional', 'Inovador'],
-  ['Sério', 'Descontraído'],
-  ['Exclusivo', 'Acessível'],
-  ['Discreto', 'Impactante'],
-  ['Minimalista', 'Maximalista'],
-  ['Formal', 'Casual'],
-  ['Frio / racional', 'Quente / emocional'],
-  ['Local / regional', 'Global / universal']
-];
+const scales=[['Tradicional','Inovador'],['Sério','Descontraído'],['Exclusivo','Acessível'],['Discreto','Impactante'],['Minimalista','Maximalista'],['Formal','Casual'],['Frio / racional','Quente / emocional'],['Local / regional','Global / universal']];
+const stepNames=['Marca','Público','Personalidade','Referências','Cores','Tipografia','Aplicações','Projeto'];
+let currentStep=1;
+const scaleValues={};
 
-const stepNames = ['Marca', 'Público', 'Personalidade', 'Referências', 'Cores', 'Tipografia', 'Aplicações', 'Projeto'];
-
-let currentStep = 1;
-const totalSteps = 8;
-const scaleValues = {};
-
-function buildScales() {
-  const container = document.getElementById('scales-container');
-  scales.forEach((pair, i) => {
-    const row = document.createElement('div');
-    row.className = 'scale-row';
-    const dots = [1,2,3,4,5].map(n => `<span id="sc-${i}-${n}" onclick="selectScale(${i},${n})">${n}</span>`).join('');
-    row.innerHTML = `<span class="pole">${pair[0]}</span><div class="scale-dots">${dots}</div><span class="pole right">${pair[1]}</span>`;
-    container.appendChild(row);
-    scaleValues[i] = null;
+function buildScales(){
+  const c=document.getElementById('scales-container');
+  scales.forEach((pair,i)=>{
+    const row=document.createElement('div');
+    row.className='scale-row';
+    const dots=[1,2,3,4,5].map(n=>`<span id="sc-${i}-${n}" onclick="selectScale(${i},${n})">${n}</span>`).join('');
+    row.innerHTML=`<span class="pole">${pair[0]}</span><div class="scale-dots">${dots}</div><span class="pole right">${pair[1]}</span>`;
+    c.appendChild(row);
+    scaleValues[i]=null;
   });
 }
 
-function selectScale(scaleIndex, val) {
-  scaleValues[scaleIndex] = val;
-  for (let n = 1; n <= 5; n++) {
-    const el = document.getElementById(`sc-${scaleIndex}-${n}`);
-    if (el) el.classList.toggle('selected', n === val);
-  }
+function selectScale(si,val){
+  scaleValues[si]=val;
+  for(let n=1;n<=5;n++){const el=document.getElementById(`sc-${si}-${n}`);if(el)el.classList.toggle('selected',n===val);}
 }
 
-function buildStepLabels() {
-  const container = document.getElementById('stepLabels');
-  stepNames.forEach((name, i) => {
-    const el = document.createElement('span');
-    el.className = 'step-label' + (i === 0 ? ' active' : '');
-    el.textContent = name;
-    el.setAttribute('data-step', i + 1);
-    container.appendChild(el);
+function buildStepLabels(){
+  const c=document.getElementById('stepLabels');
+  stepNames.forEach((name,i)=>{
+    const el=document.createElement('span');
+    el.className='step-label'+(i===0?' active':'');
+    el.textContent=name;
+    c.appendChild(el);
   });
 }
 
-function updateProgress() {
-  const pct = ((currentStep - 1) / totalSteps) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.querySelectorAll('.step-label').forEach((el, i) => {
-    el.classList.remove('active', 'done');
-    if (i + 1 === currentStep) el.classList.add('active');
-    else if (i + 1 < currentStep) el.classList.add('done');
+function updateProgress(){
+  document.getElementById('progressFill').style.width=((currentStep-1)/8*100)+'%';
+  document.querySelectorAll('.step-label').forEach((el,i)=>{
+    el.classList.remove('active','done');
+    if(i+1===currentStep)el.classList.add('active');
+    else if(i+1<currentStep)el.classList.add('done');
   });
 }
 
-function goNext() {
-  if (currentStep < totalSteps) {
-    showSection(currentStep + 1);
-  }
+function goNext(){if(currentStep<8)showSection(currentStep+1);}
+function goPrev(){if(currentStep>1)showSection(currentStep-1);}
+function showSection(n){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+n).classList.add('active');
+  currentStep=n;updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function goPrev() {
-  if (currentStep > 1) showSection(currentStep - 1);
-}
-
-function showSection(n) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.getElementById('sec-' + n).classList.add('active');
-  currentStep = n;
-  updateProgress();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-function finishForm() {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+function finishForm(){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById('sec-final').classList.add('active');
-  document.getElementById('progressFill').style.width = '100%';
-  document.querySelectorAll('.step-label').forEach(el => el.classList.add('done'));
-  buildSummary();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('progressFill').style.width='100%';
+  document.querySelectorAll('.step-label').forEach(el=>el.classList.add('done'));
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function getChecked(name) {
-  return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value || el.parentElement.textContent.trim()).join(', ') || '—';
-}
+function getChecked(name){return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(el=>el.value).join(', ')||'—';}
+function getRadio(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:'—';}
+function getVal(id){const el=document.getElementById(id);return el?(el.value.trim()||'—'):'—';}
 
-function getRadio(name) {
-  const el = document.querySelector(`input[name="${name}"]:checked`);
-  return el ? (el.value || el.parentElement.textContent.trim()) : '—';
-}
-
-function getVal(id) {
-  const el = document.getElementById(id);
-  return el ? (el.value.trim() || '—') : '—';
-}
-
-function buildSummary() {
-  const items = [
-    ['Nome da marca', getVal('q-nome')],
-    ['O que faz', getVal('q-oque')],
-    ['Tempo de existência', getRadio('tempo')],
-    ['Motivação', getChecked('motivo')],
-    ['Links', getVal('q-links')],
-    ['Público ideal', getVal('q-publico')],
-    ['Faixa etária', getVal('q-idade')],
-    ['Poder aquisitivo', getVal('q-renda')],
-    ['Atuação', getRadio('atuacao')],
-    ['Concorrentes', getVal('q-concorrentes')],
-    ['Adjetivos da marca', getChecked('adj')],
-    ['Personagem de referência', getVal('q-pessoa')],
-    ['Nunca associar a...', getVal('q-nao-quer')],
-    ['Referências que admira', getVal('q-ref-ama')],
-    ['Estilos que rejeita', getVal('q-ref-odeia')],
-    ['Outros setores de referência', getVal('q-ref-outros')],
-    ['Estilo visual preferido', getRadio('estilo-visual')],
-    ['Sensação das cores', getChecked('sensacao-cor')],
-    ['Famílias de cores', getChecked('cor-fam')],
-    ['Cor já definida', getVal('q-cor-fixa')],
-    ['Quantidade de cores', getRadio('paleta-qtd')],
-    ['Sensação tipográfica', getRadio('tipo-feel')],
-    ['Tipo de logo', getChecked('logo-tipo')],
-    ['Símbolo', getRadio('simbolo-feel')],
-    ['Ideia para símbolo', getVal('q-simbolo-ideia')],
-    ['Aplicações', getChecked('aplicacao')],
-    ['Fundo predominante', getRadio('fundo-uso')],
-    ['Formatos necessários', getChecked('formato')],
-    ['Restrições', getVal('q-restricao')],
-    ['Definição de sucesso', getVal('q-sucesso')],
-    ['Prazo', getVal('q-prazo')],
-    ['Urgência', getVal('q-urgencia')],
-    ['Aprovadores', getRadio('aprovadores')],
-    ['Deve manter', getVal('q-manter')],
-    ['Observações extras', getVal('q-extra')]
-  ];
-
-  const scaleLabels = scales.map((pair, i) => [`${pair[0]} ↔ ${pair[1]}`, scaleValues[i] ? scaleValues[i] + '/5' : '—']);
-
-  const allItems = [...items.slice(0, 11), ...scaleLabels, ...items.slice(11)];
-
-  const container = document.getElementById('summaryItems');
-  container.innerHTML = allItems.map(([label, val]) => `
-    <div class="summary-item">
-      <span class="si-label">${label}</span>
-      <span class="si-val">${val}</span>
-    </div>`).join('');
-}
-
-function resetForm() {
-  document.querySelectorAll('input[type="text"], input[type="url"], textarea, select').forEach(el => el.value = '');
-  document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
-  scales.forEach((_, i) => {
-    scaleValues[i] = null;
-    for (let n = 1; n <= 5; n++) {
-      const el = document.getElementById(`sc-${i}-${n}`);
-      if (el) el.classList.remove('selected');
-    }
-  });
+function resetForm(){
+  document.querySelectorAll('input[type="text"],input[type="url"],textarea,select').forEach(el=>el.value='');
+  document.querySelectorAll('input[type="checkbox"],input[type="radio"]').forEach(el=>el.checked=false);
+  scales.forEach((_,i)=>{scaleValues[i]=null;for(let n=1;n<=5;n++){const el=document.getElementById(`sc-${i}-${n}`);if(el)el.classList.remove('selected');}});
   showSection(1);
+}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function card(label,value,hint,full){
+  return `<div class="card${full?' card-full':''}">
+    <div class="card-label">${esc(label)}</div>
+    ${hint?`<div class="card-hint">${esc(hint)}</div>`:''}
+    <div class="card-divider"></div>
+    <div class="card-resp-label">RESPOSTA</div>
+    <div class="card-resp">${esc(value)}</div>
+  </div>`;
+}
+
+function section(num,cat,title,body){
+  return `<div class="sec-block"><div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
+  <div class="sec-header">
+    <div class="sec-num">${num}</div>
+    <div class="sec-meta"><div class="sec-cat">${esc(cat)}</div><div class="sec-title">${esc(title)}</div></div>
+  </div></div>
+  <div class="cards-grid">${body}</div>`;
+}
+
+function generatePDF(){
+  const today=new Date().toLocaleDateString('pt-BR');
+  const nome=getVal('q-nome'),oque=getVal('q-oque'),tempo=getRadio('tempo'),motivo=getChecked('motivo'),links=getVal('q-links');
+  const publico=getVal('q-publico'),idade=getVal('q-idade'),renda=getVal('q-renda'),atuacao=getRadio('atuacao'),concorrentes=getVal('q-concorrentes');
+  const adjetivos=getChecked('adj'),pessoa=getVal('q-pessoa'),naoQuer=getVal('q-nao-quer');
+  const scaleCards=scales.map((pair,i)=>card(`${pair[0]} ↔ ${pair[1]}`,scaleValues[i]?scaleValues[i]+' / 5':'—')).join('');
+  const refAma=getVal('q-ref-ama'),refOdeia=getVal('q-ref-odeia'),refOutros=getVal('q-ref-outros'),estiloVisual=getRadio('estilo-visual');
+  const sensacaoCor=getChecked('sensacao-cor'),corFam=getChecked('cor-fam'),corFixa=getVal('q-cor-fixa'),paletaQtd=getRadio('paleta-qtd');
+  const tipoFeel=getRadio('tipo-feel'),logoTipo=getChecked('logo-tipo'),simboloFeel=getRadio('simbolo-feel'),simboloIdeia=getVal('q-simbolo-ideia');
+  const aplicacao=getChecked('aplicacao'),fundoUso=getRadio('fundo-uso'),formato=getChecked('formato'),restricao=getVal('q-restricao');
+  const sucesso=getVal('q-sucesso'),prazo=getVal('q-prazo'),urgencia=getVal('q-urgencia'),aprovadores=getRadio('aprovadores'),manter=getVal('q-manter'),extra=getVal('q-extra');
+
+  const html=`<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Briefing ID Visual — ${esc(nome)}</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+:root{--lime:#CAEC30;--dark:#1A1A1A;--gray:#F3F3EF;--muted:#888;--text:#1A1A1A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.5}
+.page{width:794px;margin:0 auto}
+.cover{background:var(--dark);padding:36px 44px 32px;display:flex;flex-direction:column;gap:28px}
+.cover-top{display:flex;justify-content:space-between;align-items:flex-start}
+.logo-321{font-family:'Syne',sans-serif;font-weight:800;font-size:64px;color:var(--lime);letter-spacing:-0.05em;line-height:1}
+.logo-prod{font-size:10px;letter-spacing:0.28em;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-top:4px}
+.doc-meta{text-align:right;display:flex;flex-direction:column;gap:3px;margin-top:8px}
+.doc-meta span{font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.35)}
+.cover-eyebrow{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px}
+.cover-main{font-family:'Syne',sans-serif;font-weight:800;font-size:30px;line-height:1.1;color:#fff;letter-spacing:-0.02em}
+.cover-main em{color:var(--lime);font-style:normal}
+.info-bar{background:#F0F6C0;padding:16px 44px;display:flex;gap:0;border-bottom:2.5px solid var(--lime)}
+.info-field{flex:1;display:flex;flex-direction:column;gap:4px;border-right:1px solid rgba(0,0,0,0.1);padding-right:20px;margin-right:20px}
+.info-field:last-child{border-right:none;padding-right:0;margin-right:0}
+.info-label{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:#7A8A20;font-weight:600}
+.info-value{font-size:12px;font-weight:500;color:var(--dark);border-bottom:1px solid rgba(0,0,0,0.15);padding-bottom:4px;min-height:20px}
+.intro{margin:24px 44px 0;padding-left:16px;border-left:3px solid var(--lime)}
+.intro p{font-size:12px;color:#333;line-height:1.7}
+.intro strong{color:#5A6E00;font-weight:600}
+.sep{display:flex;align-items:center;gap:12px;padding:28px 44px 0}
+.sep-line{flex:1;height:1px;background:#E0E0DA}
+.sep-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0}
+.sec-header{display:flex;align-items:flex-end;gap:16px;padding:10px 44px 14px}
+.sec-num{font-family:'Syne',sans-serif;font-weight:800;font-size:72px;color:var(--lime);line-height:1;letter-spacing:-0.04em;flex-shrink:0}
+.sec-meta{padding-bottom:8px}
+.sec-cat{font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.sec-title{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.01em;text-transform:uppercase;color:var(--dark)}
+.cards-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 44px 8px}
+.card{background:var(--gray);border-radius:8px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px}
+.card-full{grid-column:1/-1}
+.card-label{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:var(--dark);line-height:1.3}
+.card-hint{font-size:10px;color:var(--muted);line-height:1.4}
+.card-divider{height:1px;background:rgba(0,0,0,0.08)}
+.card-resp-label{font-size:8px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+.card-resp{font-size:11.5px;color:var(--dark);line-height:1.55;background:#fff;border:1.5px dashed var(--lime);border-radius:5px;padding:8px 10px;min-height:48px;white-space:pre-wrap;word-break:break-word}
+.footer{background:var(--dark);padding:14px 44px;display:flex;justify-content:space-between;align-items:center;margin-top:36px}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:14px;color:var(--lime);letter-spacing:0.06em;text-transform:uppercase}
+.footer-date{font-size:9px;letter-spacing:0.18em;color:rgba(255,255,255,0.35);text-transform:uppercase}
+@media print{
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  @page{margin:0;size:A4}
+  .sec-block{break-inside:avoid;page-break-inside:avoid;break-after:avoid;page-break-after:avoid}
+  .card{break-inside:avoid;page-break-inside:avoid}
+  .cards-grid{break-before:avoid;page-break-before:avoid}
+  .cover,.info-bar,.intro{break-inside:avoid;page-break-inside:avoid}
+  .footer{break-before:avoid;page-break-before:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="cover">
+  <div class="cover-top">
+    <div><div class="logo-321">321</div><div class="logo-prod">Produções</div></div>
+    <div class="doc-meta"><span>Documento Interno</span><span>Identidade Visual · Briefing</span><span>321 Produções · ${today}</span></div>
+  </div>
+  <div><div class="cover-eyebrow">Briefing de</div><div class="cover-main">Identidade <em>Visual</em><br>do Cliente</div></div>
+</div>
+<div class="info-bar">
+  <div class="info-field"><div class="info-label">Cliente</div><div class="info-value">${esc(nome)}</div></div>
+  <div class="info-field"><div class="info-label">Data</div><div class="info-value">${today}</div></div>
+  <div class="info-field"><div class="info-label">Prazo desejado</div><div class="info-value">${esc(prazo)}</div></div>
+  <div class="info-field"><div class="info-label">Aprovação</div><div class="info-value">${esc(aprovadores)}</div></div>
+</div>
+<div class="intro"><p>Este documento reúne o briefing completo de identidade visual coletado com o cliente. Use-o como <strong>base estratégica</strong> para o desenvolvimento criativo — cada resposta reflete as intenções, referências e expectativas do projeto.</p></div>
+
+${section('01','SOBRE A MARCA','QUEM É VOCÊ?',
+  card('Nome da marca / empresa',nome)+
+  card('O que faz?',oque)+
+  card('Tempo de existência',tempo)+
+  card('Motivação do projeto',motivo)+
+  card('Links e portfólio atual',links,'',true)
+)}
+
+${section('02','PÚBLICO & MERCADO','PARA QUEM VOCÊ FALA?',
+  card('Cliente ideal',publico,'',true)+
+  card('Faixa etária',idade)+
+  card('Poder aquisitivo',renda)+
+  card('Abrangência de atuação',atuacao)+
+  card('Concorrentes diretos',concorrentes,'O que admira e quer diferenciar',true)
+)}
+
+${section('03','PERSONALIDADE','COMO A MARCA SE COMPORTA?',
+  card('Adjetivos que definem a marca',adjetivos,'',true)+
+  scaleCards+
+  card('Personagem / arquétipo',pessoa)+
+  card('Nunca associar à marca',naoQuer)
+)}
+
+${section('04','REFERÊNCIAS VISUAIS','O QUE INSPIRA?',
+  card('Marcas e logos que admira',refAma,'',true)+
+  card('Identidades que rejeita',refOdeia)+
+  card('Outros setores de referência',refOutros)+
+  card('Estilo visual preferido',estiloVisual)
+)}
+
+${section('05','PALETA DE CORES','QUE EMOÇÃO AS CORES DEVEM EVOCAR?',
+  card('Sensações desejadas',sensacaoCor,'',true)+
+  card('Famílias de cores selecionadas',corFam,'',true)+
+  card('Cor já definida / a manter',corFixa)+
+  card('Quantidade de cores na paleta',paletaQtd)
+)}
+
+${section('06','TIPOGRAFIA & SÍMBOLO','A VOZ E O ROSTO DA MARCA',
+  card('Sensação tipográfica',tipoFeel)+
+  card('Abordagem do logo',logoTipo)+
+  card('Estilo do símbolo',simboloFeel)+
+  card('Conceitos para o símbolo',simboloIdeia,'',true)
+)}
+
+${section('07','APLICAÇÕES & ENTREGÁVEIS','ONDE A MARCA VAI VIVER?',
+  card('Canais e suportes de aplicação',aplicacao,'',true)+
+  card('Fundo predominante',fundoUso)+
+  card('Formatos de entrega',formato)+
+  card('Restrições técnicas',restricao,'',true)
+)}
+
+${section('08','EXPECTATIVAS & PROJETO','COMO VAMOS TRABALHAR JUNTOS?',
+  card('Definição de sucesso',sucesso,'',true)+
+  card('Prazo desejado',prazo)+
+  card('Nível de urgência',urgencia)+
+  card('Quem aprova',aprovadores)+
+  card('Elementos que DEVEM ser mantidos',manter,'',true)+
+  card('Informações adicionais',extra,'',true)
+)}
+
+<div class="footer">
+  <div class="footer-brand">321 Produções</div>
+  <div class="footer-date">${today} · Briefing de Identidade Visual</div>
+</div>
+</div>
+<script>window.onload=function(){window.print();}<\/script>
+</body></html>`;
+
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const win=window.open(url,'_blank');
+  if(!win)alert('Permita pop-ups para gerar o PDF. Depois use Ctrl+P / Cmd+P para salvar.');
 }
 
 buildScales();
